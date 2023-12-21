@@ -2,9 +2,8 @@ import { Request, Response } from "express";
 import logger from "../services/loggerService";
 import fs from "fs";
 
-const ipStorageFile = process.env.IP_STORAGE_FILE;
-
 const getIp = async (req: Request, res: Response) => {
+  const ipStorageFile = process.env.IP_STORAGE_FILE;
   try {
     if (!ipStorageFile) {
       res
@@ -28,6 +27,7 @@ const getIp = async (req: Request, res: Response) => {
 };
 
 const updateIp = async (req: Request, res: Response) => {
+  const ipStorageFile = process.env.IP_STORAGE_FILE;
   try {
     if (!ipStorageFile) {
       res
@@ -40,7 +40,7 @@ const updateIp = async (req: Request, res: Response) => {
     if (!ipAddress) {
       res.status(400).send("No IP address provided");
       return;
-    } 
+    }
     if (!/^\d{1,3}(\.\d{1,3}){3}$/.test(ipAddress)) {
       res.status(400).send("Invalid IP address");
       return;

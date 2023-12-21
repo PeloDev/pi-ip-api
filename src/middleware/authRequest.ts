@@ -26,7 +26,7 @@ export const authenticateRequest = (
       logger.error(
         "[middleware - authenticateRequest]: token has no issue time"
       );
-      return res.sendStatus(403);
+      return res.sendStatus(401);
     }
 
     if (
@@ -36,12 +36,12 @@ export const authenticateRequest = (
       logger.error(
         "[middleware - authenticateRequest]: token expired"
       );
-      return res.sendStatus(403);
+      return res.sendStatus(401);
     }
 
     if (err) {
       logger.error(`[middleware - authenticateRequest]: ${err.message}`);
-      return res.sendStatus(403);
+      return res.sendStatus(401);
     }
     next();
   });

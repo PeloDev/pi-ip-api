@@ -33,7 +33,7 @@ if ($token !== $apiSecret) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $ipAddress = $_POST['ip_address'] ?? '';
+    $ipAddress = $_POST['ip_address'];
     if (!filter_var($ipAddress, FILTER_VALIDATE_IP)) {
         http_response_code(400);
         die("Invalid IP address");
